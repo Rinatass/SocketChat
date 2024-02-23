@@ -1,50 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Chat</title>
-    </head>
-    <body>
-        <h1>WebSocket Chat</h1>
-        <h3>Hello, {{username}}!</h3>
-        <form onsubmit="sendMessage(event)" id="form" style="display: block">
-            <input type="text" id="messageText" autocomplete="off"/>
-            <button>Send</button>
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+    <div class="row my-3"><h4>WebSocket Chat</h4></div>
+    <div class="row"><h6>Hello, {{username}}!</h6></div>
+    <div class="row form-group">
+        <form class="form-inline" onsubmit="sendMessage(event)" id="form" style="display: block">
+            <input class="form-control mb-1" type="text" id="messageText" autocomplete="off"/>
+            <button class="btn my-button">Send</button>
         </form>
-        <ul id='messages'>
-        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="" id="messages"></div>
+</div>
 
-        <script>
-            var username = "{{username}}";
-            var ws = new WebSocket(`ws://{{host}}/ws/${username}`);
+<script>
+    let username = "{{username}}";
+    let ws = new WebSocket(`ws://{{host}}/ws/${username}`);
 
-            function processMessage(event) {
-                var messages = document.getElementById('messages')
-                var message = document.createElement('li')
-                var content = document.createTextNode(event.data)
-                message.appendChild(content);
-                messages.appendChild(message);
-            }
+    function processMessage(event) {
+        let messages = document.getElementById('messages')
+        let message = document.createElement('div')
+        message.className = 'msg row rounded my-1 col-md-6'
+        message.id = 'msg'
+        let content = document.createTextNode(event.data)
+        message.appendChild(content);
+        messages.appendChild(message);
+    }
 
-            ws.onmessage = processMessage;
+    ws.onmessage = processMessage;
 
-            function sendMessage(event) {
-                var input = document.getElementById("messageText")
-                var message = document.createElement('li')
-                var content = document.createTextNode(input.value)
-                ws.send(input.value);
+    function sendMessage(event) {
+        let input = document.getElementById("messageText")
+        ws.send(input.value);
 
-                input.value = ''
-                event.preventDefault()
-            }
+        input.value = ''
+        event.preventDefault()
+    }
 
 
-            function showForm(event) {
-                var button = document.getElementById("connect");
-                var form = document.getElementById("form");
-                button.style.display = "none";
-                form.style.display = "block";
-            }
+    function showForm(event) {
+        let button = document.getElementById("connect");
+        let form = document.getElementById("form");
+        button.style.display = "none";
+        form.style.display = "block";
+    }
 
-        </script>
-    </body>
-</html>
+</script>
+{%endblock%}

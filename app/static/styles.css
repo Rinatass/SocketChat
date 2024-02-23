@@ -1,0 +1,34 @@
+.msg{
+    background-color: #EDC7B7;
+}
+
+body{
+    background-color: #EEE2DC;
+    color: #AC3B61;
+}
+
+nav{
+    background-color: #EDC7B7;
+}
+
+.my_nav a{
+    color: #AC3B61;
+}
+
+.hyperlink{
+    color: #f3115f;
+}
+
+.my-menu-button{
+    color: #AC3B61;
+}
+
+.my-button{
+    background-color: #EDC7B7;
+    color: #AC3B61;
+}
+
+.my-footer{
+    border-color: #BAB2B5!important;
+}
+
