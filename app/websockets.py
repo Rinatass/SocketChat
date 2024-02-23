@@ -6,11 +6,11 @@ router = APIRouter()
 connections = []
 
 
-@router.websocket("/chat")
-async def websocket_endpoint(websocket: WebSocket):
+@router.websocket("/ws/{username}")
+async def websocket_endpoint(websocket: WebSocket, username: str) -> None:
     await websocket.accept()
     connections.append(websocket)
     while True:
         message = await websocket.receive_text()
         for connection in connections:
-            await connection.send_text(message)
+            await connection.send_text(f"{username}:{message}")
