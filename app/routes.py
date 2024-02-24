@@ -18,3 +18,15 @@ async def chat(username):
     host = os.environ.get('host')
     template = env.get_template('chat.html')
     return template.render(username=username, host=host)
+
+
+@router.get("/about", response_class=HTMLResponse)
+async def about():
+    template = env.get_template('about.html')
+    return template.render()
+
+
+@router.get("/author", response_class=HTMLResponse)
+async def author():
+    template = env.get_template('author.html')
+    return template.render()
