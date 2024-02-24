@@ -7,3 +7,4 @@ app = FastAPI()
 app.include_router(router)
 app.include_router(websocket_router)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
