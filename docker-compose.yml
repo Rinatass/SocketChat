@@ -1,0 +1,12 @@
+version: 1.0;
+
+services:
+  uvicorn:
+    env_file:
+      - .env
+    build: ./
+
+  nginx:
+    build: ./nginx/
+    ports:
+      - 81:80

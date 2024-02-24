@@ -15,9 +15,9 @@ async def main():
 
 @router.get("/chat", response_class=HTMLResponse)
 async def chat(username):
-    host = os.environ.get('host')
+    ws_host = os.environ.get('WS_HOST')
     template = env.get_template('chat.html')
-    return template.render(username=username, host=host)
+    return template.render(username=username, ws_host=ws_host)
 
 
 @router.get("/about", response_class=HTMLResponse)

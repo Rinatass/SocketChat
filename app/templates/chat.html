@@ -16,7 +16,7 @@
 
 <script>
     let username = "{{username}}";
-    let ws = new WebSocket(`ws://{{host}}/ws/${username}`);
+    let ws = new WebSocket(`ws://{{ws_host}}/ws/${username}`);
 
     function processMessage(event) {
         let messages = document.getElementById('messages')
